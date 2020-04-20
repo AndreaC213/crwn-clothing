@@ -39,7 +39,7 @@ class SignUp extends React.Component {
             await createUserProfileDocument(user, { displayName });
             
             // clear the form  
-            this.state({
+            this.setState({
                 displayName: '',
                 email: '',
                 password: '',
@@ -74,7 +74,7 @@ class SignUp extends React.Component {
                     required
                     />
                     <FormInput
-                    type='text'
+                    type='email'
                     name='email'
                     value={email}
                     onChange={this.handleChange}
@@ -82,7 +82,7 @@ class SignUp extends React.Component {
                     required
                     />
                     <FormInput
-                    type='text'
+                    type='password'
                     name='password'
                     value={password}
                     onChange={this.handleChange}
@@ -90,7 +90,7 @@ class SignUp extends React.Component {
                     required
                     />
                     <FormInput
-                    type='text'
+                    type='password'
                     name='comfirmPassword'
                     value={comfirmPassword}
                     onChange={this.handleChange}
