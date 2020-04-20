@@ -5,7 +5,7 @@ import HomePage from './components/pages/homepage/homepage.component';
 import ShopPage from './components/pages/shop/shop.component';
 import SignInAndSignUpPage from './components/pages/sign-in-and-sign-up/sign-in-and-sign-up.component';
 import Header from './components/header/header.component';
-import { auth } from './firebase/filebase.utils';
+import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 
 // how do we confirm the access by google sign in
 // function -> class to acess state
@@ -24,10 +24,10 @@ class App extends React.Component {
   unsubscribeFromAuth = null
 
   // Get persistence of our user section
-  // subscriber will keep track of the user auth
+  // get promise from auth by using 'createUserProfileDocument' from firebase
   componentDidMount() {
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(user => {
-      this.setState({ currentUser: user });
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async user => {
+      createUserProfileDocument(user);
 
       console.log(user);
     });
