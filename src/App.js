@@ -26,10 +26,31 @@ class App extends React.Component {
   // Get persistence of our user section
   // get promise from auth by using 'createUserProfileDocument' from firebase
   componentDidMount() {
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(async user => {
-      createUserProfileDocument(user);
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+      if (userAuth) {
 
-      console.log(user);
+        // if user not in firestore create one then return userRef
+        const userRef = await createUserProfileDocument(userAuth);
+
+        // subscribe to this userRef
+        // then set state for current user by using onSnapshop and .data()
+        userRef.onSnapshot(snapShot => {
+          this.setState({
+            currentUser: {
+              id: snapShot.id,
+              ...snapShot.data()
+            }
+          },
+          () => {
+            console.log(this.state);
+          }
+          )
+        });
+      }
+      // log out 
+      else {
+        this.setState({currentUser: userAuth});
+      }
     });
   }
 
