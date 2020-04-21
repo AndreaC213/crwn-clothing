@@ -6,9 +6,12 @@ import { Provider } from 'react-redux';
 import './index.css';
 import App from './App';
 
-// redux(Provider) as a root 
+import store from './redux/store';
+
+// redux component class (Provider) as a root 
+// 
 ReactDOM.render(
-  <Provider>
+  <Provider store={store}>
     <BrowserRouter>
       <App />
     </BrowserRouter>
