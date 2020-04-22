@@ -5,7 +5,7 @@ const INITIAL_STATE = {
 
 // state would be redux store in whatever action pass in 
 // userReducer with two objects 'state' and 'action'
-const userReducer = (state, action) => {
+const userReducer = (state= INITIAL_STATE, action) => {
 
     // check the action type
     switch (action.type) {
