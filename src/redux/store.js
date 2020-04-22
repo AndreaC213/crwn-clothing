@@ -9,6 +9,7 @@ import rootReducer from './root-reducer';
 // so we can pull value from the store to components by usind {provider} in 'index.js'
 
 // pass the middleware as an array to be scalable
+// 'logger' store prevState and nextState 
 const middlewares = [logger];
 
 const store = createStore(rootReducer, appyMiddleware(...middlewares));

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { ReactComponent as Logo } from '../../assets/crown.svg';
 import { auth } from '../../firebase/firebase.utils';
 
@@ -34,4 +35,11 @@ const Header = ({ currentUser }) => (
     </div>
 );
 
-export default Header;
+// pass the root reducer then get the current state 
+// from it's children reducer
+const mapStateToProps = state => ({
+  currentUser: state.user.currentUser
+});
+
+// get the current state for header
+export default connect(mapStateToProps)(Header);
