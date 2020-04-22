@@ -15,7 +15,7 @@ const CartIcon = ({ toggleCartHidden }) => (
 );
 
 const mapDispatchToProps = dispatch => ({
-    toggleCartHidden: () => diapatch(toggleCartHidden)
+    toggleCartHidden: () => dispatch(toggleCartHidden())
 });
 
 export default connect(

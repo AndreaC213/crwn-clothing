@@ -1,4 +1,4 @@
-import { CartActionTypes } from './cart.types';
+import CartActionTypes from './cart.types';
 
 // fire off the an actions holds that snapShot object,
 // we used to store in our state at 'firebase.utils'
