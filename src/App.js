@@ -1,11 +1,15 @@
 import React from 'react';
 import {Switch, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
+
 import './App.css';
+
 import HomePage from './components/pages/homepage/homepage.component';
 import ShopPage from './components/pages/shop/shop.component';
 import SignInAndSignUpPage from './components/pages/sign-in-and-sign-up/sign-in-and-sign-up.component';
 import Header from './components/header/header.component';
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
+import { setCurrentUser } from './redux/user/user.actions';
 
 // how do we confirm the access by google sign in
 // function -> class to acess state
@@ -71,4 +75,9 @@ class App extends React.Component {
   
 }
 
-export default App;
+// getting back the object from action by using 'dispatch'
+const mapDispatchToProps = dispatch => ({
+  setCurrentUser: user => dispatch(setCurrentUser(user))
+});
+
+export default connect(null, mapDispatchToProps)(App);
