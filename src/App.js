@@ -14,22 +14,13 @@ import { setCurrentUser } from './redux/user/user.actions';
 // how do we confirm the access by google sign in
 // function -> class to acess state
 class App extends React.Component {
-
-  constructor() {
-    super()
-
-    // want to know the sign in and sign out state change 
-    // by using 'onAuthStateChanged'
-    this.state = {
-      currentUser: null
-    }
-  }
-
   unsubscribeFromAuth = null
 
   // Get persistence of our user section
   // get promise from auth by using 'createUserProfileDocument' from firebase
   componentDidMount() {
+    const {setCurrentUser} = this.props;
+
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
       if (userAuth) {
 
@@ -37,19 +28,18 @@ class App extends React.Component {
         const userRef = await createUserProfileDocument(userAuth);
 
         // subscribe to this userRef
-        // then set state for current user by using onSnapshop and .data()
+        // then set state for current user by using onSnapshop and .data() and
+        // 'action.js'
         userRef.onSnapshot(snapShot => {
-          this.setState({
-            currentUser: {
+          setCurrentUser({
               id: snapShot.id,
               ...snapShot.data()
-            }
           });
         });
       }
       // log out 
       else {
-        this.setState({currentUser: userAuth});
+        setCurrentUser(userAuth);
       }
     });
   }
