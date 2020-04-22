@@ -14,7 +14,7 @@ import './header.styles.scss';
 
 // destructure the current state into the header
 // see it's signin or sign out
-const Header = ({ currentUser }) => (
+const Header = ({ currentUser, hidden }) => (
     <div className='header'>
         <Link className='logo-container' to="/">
             <Logo className='logo' />
@@ -39,14 +39,16 @@ const Header = ({ currentUser }) => (
             }
             <CartIcon />
         </div>
-        <CartDropdown />
+        { hidden ? null : <CartDropdown /> }
     </div>
 );
 
 // pass the root reducer then get the current state 
 // from it's children reducer
-const mapStateToProps = state => ({
-  currentUser: state.user.currentUser
+// construct mutiple states from root reducer
+const mapStateToProps = ({user: {currentUser}, cart: { hidden }}) => ({
+  currentUser,
+  hidden
 });
 
 // get the current state for header
