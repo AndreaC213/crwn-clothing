@@ -5,11 +5,12 @@ import CustomButton from '../custom-button/custom-button.component';
 import { addItem } from '../../redux/cart/cart.actions';
 
 import './collection-item.styles.scss';
-import { dispatch } from 'rxjs/internal/observable/pairs';
 
-// destruct the collection preview to current props objects
-// access the item in this specific collection
-const CollectionItem = ({ id, name, price, imageUrl, addItem }) => (
+// destruct the collection preview to current props objects as 'item'
+// now current collection can access the 'item' objects
+const CollectionItem = ({ item, addItem }) => {
+  const { id, name, price, imageUrl } = item;
+  return (
     <div className='collection-item'>
         <div
           className='image'
@@ -21,21 +22,27 @@ const CollectionItem = ({ id, name, price, imageUrl, addItem }) => (
           <span className='name'>{ name }</span>
           <span className='price'>{ price }</span>
         </div>
-        <CustomButton inverted>Add to cart</CustomButton>
+        <CustomButton onClick={() => addItem(item)} inverted>
+          Add to cart
+        </CustomButton>
     </div>
-);
+  );
+};
 
 // objects are written with curly braces {}
 // many properties using {} to hold the value
 //  var object = {properties: ""}
 // dispatch the addItem actions to 'item' for reducer usage
 // meaning addItem (prop at web page) as a prop function
-// received the item as the pass in value into our 'addItem' properity
-// action give us back that ob
+// received the item as pass in value to current 'addItem' properity
+// 'action' gives us back that object with 'type' and 'payload'
+// function within the properity
 const mapDispatchToProps = dispatch => ({
-  // function within the properity
   addItem: item => dispatch(addItem(item))
-})
+});
 
 // then passing the 'item' into CollectionItem (reducer) 
-export default connect(null, mapDispatchToProps)(CollectionItem);
+export default connect(
+  null, 
+  mapDispatchToProps
+  )(CollectionItem);

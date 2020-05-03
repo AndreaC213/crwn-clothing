@@ -8,9 +8,9 @@ const INITIAL_STATE ={
 
 // add the item into array whatever in that payload 
 // handle duplication latter
-const CartActionTypes = (state = INITIAL_STATE, action) => {
+const cartReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case cartActionTypes.TOGGLE_CART_HIDDEN:
+    case CartActionTypes.TOGGLE_CART_HIDDEN:
       return {
           ...state,
           hidden: !state.hidden
