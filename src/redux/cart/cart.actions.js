@@ -8,6 +8,12 @@ export const toggleCartHidden = () => ({
     type: CartActionTypes.TOGGLE_CART_HIDDEN,
 });
 
+// addItem
+// step 4 generate action function 'addItem'
+// to get the 'item' then generate new action function
+// 'type' & 'payload'
+// passing the 'item' (onClick value) 
+// from 'collection-item' as payload
 export const addItem = item => ({
   type: CartActionTypes.ADD_ITEM,
   payload: item

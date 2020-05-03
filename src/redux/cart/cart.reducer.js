@@ -1,13 +1,22 @@
 import CartActionTypes from './cart.types';
 
-// adding cart items array to hold the state
+// addItem 
+// step 1. add new value we want to tarck to current 'cartItems array'
+// adding cart items array to hold the state 
 const INITIAL_STATE ={
     hidden: true,
     cartItems: []
 };
 
+// addItem
+// step 2. modify 'cartItems array' (property) 
 // add the item into array whatever in that payload 
 // handle duplication latter
+// addItem
+// step 5. reducer listen the new case 'CartActionTypes.ADD_ITEM'
+// after action come in, 
+// update the 'new state' of cartItems array within over all cart reducer
+// by appending 'action.payload'
 const cartReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case CartActionTypes.TOGGLE_CART_HIDDEN:

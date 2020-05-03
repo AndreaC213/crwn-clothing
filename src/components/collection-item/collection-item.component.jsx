@@ -29,6 +29,11 @@ const CollectionItem = ({ item, addItem }) => {
   );
 };
 
+// addItem
+// step 6. update collection item to pulls in to its props
+// define the onClick addItem function as 'item' function 
+// that return the payload and the type
+// which dispatch actul action 'addItem'
 // objects are written with curly braces {}
 // many properties using {} to hold the value
 //  var object = {properties: ""}
