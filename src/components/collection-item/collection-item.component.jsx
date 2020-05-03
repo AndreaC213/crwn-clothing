@@ -7,7 +7,8 @@ import { addItem } from '../../redux/cart/cart.actions';
 import './collection-item.styles.scss';
 
 // destruct the collection preview to current props objects as 'item'
-// now current collection can access the 'item' objects
+// addItem
+// step 7. now current collection can access the 'item' objects
 const CollectionItem = ({ item, addItem }) => {
   const { id, name, price, imageUrl } = item;
   return (
