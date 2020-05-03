@@ -16,8 +16,7 @@ const INITIAL_STATE ={
 // addItem
 // step 5. reducer listen the new case 'CartActionTypes.ADD_ITEM'
 // after action come in, 
-// update the 'new state' of cartItems array within over all cart reducer
-// by appending 'action.payload'
+// update cartItems by using { addItemToCart }
 const cartReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case CartActionTypes.TOGGLE_CART_HIDDEN:

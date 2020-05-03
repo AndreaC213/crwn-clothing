@@ -1,3 +1,6 @@
+// groupomg the same item by increasing their quantity
+// with permeter hold current cartItems in array and
+// the current 'action.payload' 
 export const addItemToCart = (cartItems, cartItemToAdd) => {
   const existingCartItem = cartItems.find(
     cartItem => cartItem.id === cartItemToAdd.id
