@@ -1,6 +1,5 @@
 import CartActionTypes from './cart.types';
 import { addItemToCart, removeItemFromCart } from './cart.utils';
-import { stat } from 'fs';
 
 // addItem 
 // step 1. add new value we want to tarck to current 'cartItems array'
