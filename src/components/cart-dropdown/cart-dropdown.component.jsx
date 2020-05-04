@@ -8,7 +8,8 @@ import './cart-dropdown.styles.scss';
 
 // addItem
 // step 12.
-// mapping and get the current cart item
+// call { cartItems } then it will connect 'cartItems reducer' and 
+// { map } all the current cart item display by { CartItem }
 const CartDropdown = ({ cartItems }) => (
     <div className='cart-dropdown'>
         <div className='cart-items'>
