@@ -16,7 +16,7 @@ const middlewares = [logger];
 export const store = createStore(rootReducer, applyMiddleware(...middlewares));
 
 // persist current store by using persistor as a provider
-export const persist = persistStore(store);
+export const persistor = persistStore(store);
  
 export default { store, persistor };
 

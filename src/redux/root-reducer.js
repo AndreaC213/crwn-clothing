@@ -15,11 +15,11 @@ const persistConfig = {
 }
 
 // wrape it up with root reducer
-const rootReducer = conbineReducers({
+const rootReducer = combineReducers({
     user: userReducer,
     cart: cartReducer
 });
 
 // config by call {persistReducer}
 // get root reducer with the persistence capability
-export default persistReducer(persistConfig, root);
+export default persistReducer(persistConfig, rootReducer);
