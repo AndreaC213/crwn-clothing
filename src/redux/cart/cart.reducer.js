@@ -1,5 +1,6 @@
 import CartActionTypes from './cart.types';
-import {addItemToCart} from './cart.utils';
+import { addItemToCart, removeItemFromCart } from './cart.utils';
+import { stat } from 'fs';
 
 // addItem 
 // step 1. add new value we want to tarck to current 'cartItems array'
@@ -31,6 +32,11 @@ const cartReducer = (state = INITIAL_STATE, action) => {
         ...state,
         cartItems: addItemToCart(state.cartItems, action.payload)
       };
+    case CartActionTypes.REMOVE_ITEM:
+      return {
+        ...state,
+        cartItems: removeItemFromCart(state.cartItems, action.payload)
+      }
     case CartActionTypes.CLEAR_ITEM_FROM_CART:
       return {
         ...state,
