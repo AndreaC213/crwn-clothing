@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { toggleCartHidden } from '../../redux/cart/cart.actions';
+import { selectCartItemsCount } from '../../redux/cart/cart.selectors';
 
 import { ReactComponent as ShoppingIcon } from '../../assets/shopping-bag.svg';
 
@@ -20,12 +21,11 @@ const mapDispatchToProps = dispatch => ({
 });
 
 // changed the cart icon number in time when we add item
-const mapStateToProps = ({ cart: { cartItems } }) => ({
-    itemCount: cartItems.reduce(
-        (accumalatedQuantity, cartItem) => accumalatedQuantity + cartItem.quantity, 
-    0
-    )
-})
+// using 'reselect' from library to manage the state to
+// not cache every state after we trigger any action
+const mapStateToProps = state => ({
+    itemCount: selectCartItemsCount(state)
+});
 
 // pass the 'itemCount' as parameter into {CartIcon} 
 export default connect(

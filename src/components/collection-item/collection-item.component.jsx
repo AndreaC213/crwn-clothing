@@ -10,7 +10,7 @@ import './collection-item.styles.scss';
 // addItem
 // step 7. now current collection can access the 'item' objects
 const CollectionItem = ({ item, addItem }) => {
-  const { id, name, price, imageUrl } = item;
+  const { name, price, imageUrl } = item;
   return (
     <div className='collection-item'>
         <div
