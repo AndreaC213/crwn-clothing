@@ -17,6 +17,8 @@ const INITIAL_STATE ={
 // step 5. reducer listen the new case 'CartActionTypes.ADD_ITEM'
 // after action come in, 
 // update cartItems by using { addItemToCart }
+// addItem
+// step 10. leverage {addItemToCart} to count items
 const cartReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case CartActionTypes.TOGGLE_CART_HIDDEN:

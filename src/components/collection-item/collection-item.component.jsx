@@ -32,7 +32,7 @@ const CollectionItem = ({ item, addItem }) => {
 
 // addItem
 // step 6. update collection item to pulls in to its props
-// define the onClick addItem function as 'item' function 
+// define the onClick '{ addItem }'  as '{ item }'  
 // that return the payload and the type
 // which dispatch actul action 'addItem'
 // objects are written with curly braces {}

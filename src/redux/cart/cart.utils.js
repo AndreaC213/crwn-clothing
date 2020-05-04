@@ -1,3 +1,5 @@
+// addItem
+// step 9 deal with the duplicated items 
 // groupomg the same item by increasing their quantity
 // with permeter hold current cartItems in array and
 // the current 'action.payload' 
