@@ -1,14 +1,16 @@
 import React from 'react';
 
 import { Link } from 'react-router-dom';
-import { auth } from '../../firebase/firebase.utils';
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 
-import { ReactComponent as Logo } from '../../assets/crown.svg';
+import { auth } from '../../firebase/firebase.utils';
 import CartIcon from '../cart-icon/cart-icon.component';
 import CartDropdown from '../cart-dropdown/cart-dropdown.component';
+import { selectCartHidden } from '../../redux/cart/cart.selectors';
+import { selectCurrentUser } from '../../redux/user/user.selectors';
 
-
+import { ReactComponent as Logo } from '../../assets/crown.svg';
 
 import './header.styles.scss';
 
@@ -46,9 +48,12 @@ const Header = ({ currentUser, hidden }) => (
 // pass the root reducer then get the current state 
 // from it's children reducer
 // construct mutiple states from root reducer
-const mapStateToProps = ({user: {currentUser}, cart: { hidden }}) => ({
-  currentUser,
-  hidden
+// passing our state into the selectors
+// by setting state as an object and point to corresponded selector
+// optimize by using {createStructuredSelector} to passing 'state'
+const mapStateToProps = createStructuredSelector({
+  currentUser : selectCurrentUser,
+  hidden : selectCartHidden
 });
 
 // get the current state for header

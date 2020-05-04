@@ -1,10 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 
 import CustomButton from '../custom-button/custom-button.component';
 import CartItem from '../cart-item/cart-item.component';
 
 import './cart-dropdown.styles.scss';
+import { selectCartItems } from '../../redux/cart/cart.selectors';
 
 // addItem
 // step 12.
@@ -27,8 +29,8 @@ const CartDropdown = ({ cartItems }) => (
 // connect 'cart-dropdown.component' to current 'cart-item.component'
 // then dispatch the reducer and get the current state of
 // the current component 'cart-dropdown'
-const mapStateToProps = ({ cart: { cartItems } }) => ({
-    cartItems
+const mapStateToProps = createStructuredSelector({
+    cartItems : selectCartItems
 });
 
 export default connect(mapStateToProps)(CartDropdown);
