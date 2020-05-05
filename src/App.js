@@ -61,7 +61,11 @@ class App extends React.Component {
           <Route exact path='/' component={HomePage}/>
           <Route path='/shop' component={ShopPage}/>
           <Route exact path='/checkout' component={CheckoutPage}/>
-          <Route 
+          <Route exact path='/shop/hats/checkout' component={CheckoutPage}/>
+          <Route exact path='/shop/sneakers/checkout' component={CheckoutPage}/>
+          <Route exact path='/shop/jackets/checkout' component={CheckoutPage}/>
+          <Route exact path='/shop/womens/checkout' component={CheckoutPage}/>
+          <Route exact path='/shop/mens/checkout' component={CheckoutPage}/>
             exact 
             path='/signin' 
             render={() => 

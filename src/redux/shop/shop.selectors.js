@@ -16,8 +16,8 @@ export const selectCollectionsForPreview = createSelector(
 // find collection.id matching the url params of 
 // the current collection id map
 // Data Normalization by passing as objects not array
-export const selectCollection = collectionUrlParam => 
+export const selectCollection = collectionUrlParam =>
   createSelector(
     [selectCollections],
     collections => collections[collectionUrlParam]
-  )
+);

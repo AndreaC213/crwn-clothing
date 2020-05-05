@@ -10,7 +10,6 @@ import './index.css';
 import App from './App';
 
 // redux component class (Provider) as a root 
-// 
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>

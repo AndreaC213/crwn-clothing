@@ -11,7 +11,11 @@ import rootReducer from './root-reducer';
 
 // pass the middleware as an array to be scalable
 // 'logger' store prevState and nextState 
-const middlewares = [logger];
+const middlewares = [];
+
+if (process.env.NODE_ENV === 'development') {
+  middlewares.push(logger);
+}
 
 export const store = createStore(rootReducer, applyMiddleware(...middlewares));
 

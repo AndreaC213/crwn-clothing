@@ -34,10 +34,10 @@ const CheckoutItem = ({ cartItem, clearItem, addItem, removeItem }) => {
   </div>
 )};
 
-const mapDispatchToProp = dispatch => ({
+const mapDispatchToProps = dispatch => ({
   clearItem: item => dispatch(clearItemFromCart(item)),
   addItem: item => dispatch(addItem(item)),
   removeItem: item => dispatch(removeItem(item))
 });
 
-export default connect(null, mapDispatchToProp)(CheckoutItem);
+export default connect(null, mapDispatchToProps)(CheckoutItem);
