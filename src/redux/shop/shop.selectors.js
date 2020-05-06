@@ -10,7 +10,8 @@ export const selectCollections = createSelector(
 // we want to map the key and get the corresponded object of that key
 export const selectCollectionsForPreview = createSelector(
   [selectCollections],
-  collections => Object.keys(collections).map(key => collections[key])
+  collections => 
+    collections ? Object.keys(collections).map(key => collections[key]) : []
 );
 
 // find collection.id matching the url params of 
@@ -19,5 +20,5 @@ export const selectCollectionsForPreview = createSelector(
 export const selectCollection = collectionUrlParam => 
   createSelector(
     [selectCollections],
-    collections => collections[collectionUrlParam]
+    collections => (collections ? collections[collectionUrlParam] : null)
 );
