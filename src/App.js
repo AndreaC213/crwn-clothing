@@ -24,7 +24,7 @@ class App extends React.Component {
   // Get persistence of our user section
   // get promise from auth by using 'createUserProfileDocument' from firebase
   componentDidMount() {
-    const {setCurrentUser} = this.props;
+    const {setCurrentUser, collectionsArray} = this.props;
 
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
       if (userAuth) {
@@ -45,6 +45,7 @@ class App extends React.Component {
       // log out 
       else {
         setCurrentUser(userAuth);
+        addCollectionAndDocuments('collections', collectionsArray)
       }
     });
   }
@@ -85,6 +86,7 @@ class App extends React.Component {
 // getting current user form redux state
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser
+  collectionsArray: selectCollectionsForPreview
 })
 
 // getting back the object from action by using 'dispatch'

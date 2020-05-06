@@ -48,8 +48,16 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
 // by passing the collectionKey into firebase, 
 // it will give us back a ref object
 // import to where we have access to the SHOP_DATA
-export const addCollectionAndDocuments = (collectionKey, objectsToAdd) => {
+export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => {
     const collectionRef = firestore.collection(collectionKey);
+
+    const batch = firestore.batch();
+    objectsToAdd.forEach(obj => {
+        const newDocRef = collectionRef.doc();
+        batch.set(newDocRef, obj);
+    });
+
+    return await batch.commit();
 }
 
 firebase.initializeApp(config);
