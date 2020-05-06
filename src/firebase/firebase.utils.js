@@ -13,6 +13,8 @@ const config = {
     measurementId: "G-5DNF412HXM"
 };
 
+firebase.initializeApp(config);
+
 // take the object from auth library and store into firestore
 // calling API request by using async
 export const createUserProfileDocument = async (userAuth, additionalData) => {
@@ -45,6 +47,7 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
     return userRef;
 };
 
+// function we can use to make new collections and documents we want
 // by passing the collectionKey into firebase, 
 // it will give us back a ref object
 // import to where we have access to the SHOP_DATA
@@ -58,9 +61,25 @@ export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => 
     });
 
     return await batch.commit();
-}
+};
 
-firebase.initializeApp(config);
+export const convertCollectionsSnapshotToMap = collections => {
+    const transformedCollection = collections.docs.map(doc => {
+        const { title, items } = doc.data();
+
+        return {
+            routeName: encodeURI(title.toLowerCase()),
+            id: doc.id,
+            title,
+            items
+        };
+    });
+    
+    return transformedCollection.reduce((accumulator, collection) => {
+        accumulator[collection.title.toLowerCase()] = collection;
+        return accumulator;
+    }, {});
+};
 
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
