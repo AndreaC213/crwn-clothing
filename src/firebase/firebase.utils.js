@@ -43,6 +43,13 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
         }
     }
     return userRef;
+};
+
+// by passing the collectionKey into firebase, 
+// it will give us back a ref object
+// import to where we have access to the SHOP_DATA
+export const addCollectionAndDocuments = (collectionKey, objectsToAdd) => {
+    const collectionRef = firestore.collection(collectionKey);
 }
 
 firebase.initializeApp(config);
