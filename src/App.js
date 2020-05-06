@@ -14,7 +14,7 @@ import { GlobalStyle } from './global.styles';
 import { auth, createUserProfileDocument, addCollectionAndDocuments } from './firebase/firebase.utils';
 import { setCurrentUser } from './redux/user/user.actions';
 import { selectCurrentUser } from './redux/user/user.selectors';
-import { selectCollectionForPreview } from './redux/shop/shop.selectors';
+import { selectCollectionsForPreview } from './redux/shop/shop.selectors';
 
 // how do we confirm the access by google sign in
 // function -> class to acess state
@@ -45,8 +45,11 @@ class App extends React.Component {
       // log out 
       else {
         setCurrentUser(userAuth);
-        addCollectionAndDocuments('collections', collectionsArray)
-      }
+        addCollectionAndDocuments(
+          'collections', 
+          collectionsArray.map(({title, items}) => ({ title, items }))
+        );
+      };
     });
   }
 
@@ -85,7 +88,7 @@ class App extends React.Component {
 
 // getting current user form redux state
 const mapStateToProps = createStructuredSelector({
-  currentUser: selectCurrentUser
+  currentUser: selectCurrentUser,
   collectionsArray: selectCollectionsForPreview
 })
 
