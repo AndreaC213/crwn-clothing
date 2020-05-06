@@ -1,20 +1,24 @@
 import React from 'react';
 
-import './cart-item.styles.scss';
+import {
+  CartItemContainer,
+  ItemDetailsContainer,
+  CartItemImage
+} from './cart-item.styles';
 
 // addItem
 // step 11. create a { cartItem } and 
 // destruct the item objects displayed in the cart
 const CartItem = ({ item: { imageUrl, price, name, quantity } }) => (
-  <div className='cart-item'>
-    <img src={imageUrl} alt='item' />
-    <div className='item-details'>
+  <CartItemContainer>
+    <CartItemImage src={imageUrl} alt='item' />
+    <ItemDetailsContainer>
       <span className='name'>{name}</span>
       <span className='price'>
         {quantity} x ${price}
       </span>
-    </div>
-  </div>
+    </ItemDetailsContainer>
+  </CartItemContainer>
 )
 
 export default CartItem;
