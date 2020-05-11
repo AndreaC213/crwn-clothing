@@ -11,9 +11,9 @@ const mapStateToProps = createStructuredSelector({
   isLoading: selectIsCollectionsFetching
 });
 
-// connect the 'mapStateToProps' and CollectionsOverview
-// then wrapped 'CollectionsOverview' inside of 
-// current 'WithSpinner' by using compose
+// connect the 'mapStateToProps' and 'WithSpinner'
+// then wrapped the current 'WithSpinner' inside of 
+// 'CollectionsOverview' by using compose
 const CollectionsOverviewContainer = compose(
   connect(mapStateToProps),
   WithSpinner
