@@ -28,6 +28,9 @@ export const selectIsCollectionsFetching = createSelector(
   shop => shop.isFetching
 );
 
+// ' !!shop.collections ' means if the collections is
+// loaded will return false
+// because is not empty string {}
 export const selectIsCollectionsLoaded = createSelector(
   [selectShop],
   shop => !!shop.collections

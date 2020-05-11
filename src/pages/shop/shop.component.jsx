@@ -4,7 +4,7 @@ import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 
 import { fetchCollectionsStartAsync } from '../../redux/shop/shop.actions';
-import { selectIsCollectionsFetching } from '../../redux/shop/shop.selectors';
+import { selectIsCollectionsFetching, selectIsCollectionsLoaded } from '../../redux/shop/shop.selectors';
 
 import WithSpinner from '../../components/with-spinner/with-spinner.component';
 
@@ -18,6 +18,7 @@ const CollectionsPageWithSpinner = WithSpinner(CollectionPage);
 // will create child component of the shopPage be connected
 // get the current path by passing 'match' the former path as props
 // using categoryId as parameter for path
+// invert 'isCollectionsLoaded' to get the correct isLoading State
 class ShopPage extends React.Component{
     componentDidMount() {
         const { fetchCollectionsStartAsync } = this.props;
@@ -25,7 +26,7 @@ class ShopPage extends React.Component{
     }
 
     render() {
-        const { match, isCollectionsFetching } = this.props;
+        const { match, isCollectionsFetching, isCollectionsLoaded } = this.props;
         return(
             <div className='shop-page'>
                 <Route 
@@ -35,7 +36,7 @@ class ShopPage extends React.Component{
                 <Route 
                     path={`${match.path}/:collectionId`} 
                     render={(props) =>
-                    <CollectionsPageWithSpinner isLoading={isCollectionsFetching} {...props} /> }
+                    <CollectionsPageWithSpinner isLoading={!isCollectionsLoaded} {...props} /> }
                 />
             </div>
         );
@@ -43,7 +44,8 @@ class ShopPage extends React.Component{
 }
 
 const mapStateToProps = createStructuredSelector({
-    isCollectionsFetching: selectIsCollectionsFetching
+    isCollectionsFetching: selectIsCollectionsFetching,
+    isCollectionsLoaded: selectIsCollectionsLoaded
 });
 
 const mapDispatchToProps = dispatch => ({
