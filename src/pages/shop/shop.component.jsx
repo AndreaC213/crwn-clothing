@@ -1,16 +1,11 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 
 import { fetchCollectionsStartAsync } from '../../redux/shop/shop.actions';
 
-import WithSpinner from '../../components/with-spinner/with-spinner.component';
-
 import CollectionsOverviewContainer from '../../components/collections-overview/collections-overview.container';
-import CollectionPage from '../collection/collection.component';
-
-const CollectionsPageWithSpinner = WithSpinner(CollectionPage);
+import CollectionPageContainer from '../collection/collection.component';
 
 // update shopPage as non-connect component
 // will create child component of the shopPage be connected
@@ -24,7 +19,7 @@ class ShopPage extends React.Component{
     }
 
     render() {
-        const { match, isCollectionsLoaded } = this.props;
+        const { match } = this.props;
         return(
             <div className='shop-page'>
                 <Route 
@@ -33,20 +28,15 @@ class ShopPage extends React.Component{
                 />
                 <Route 
                     path={`${match.path}/:collectionId`} 
-                    render={(props) =>
-                    <CollectionsPageWithSpinner isLoading={!isCollectionsLoaded} {...props} /> }
+                    component={CollectionPageContainer}
                 />
             </div>
         );
     }
 }
 
-const mapStateToProps = createStructuredSelector({
-    isCollectionsLoaded: selectIsCollectionsLoaded
-});
-
 const mapDispatchToProps = dispatch => ({
     fetchCollectionsStartAsync: () => dispatch(fetchCollectionsStartAsync())
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ShopPage);
+export default connect(null, mapDispatchToProps)(ShopPage);

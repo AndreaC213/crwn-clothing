@@ -11,7 +11,7 @@ import CollectionPage from './collection.component';
 // get the state and own props into it 
 // 'selectIsCollectionsLoaded'
 const mapStateToProps = createStructuredSelector({
-  isLoading: state => selectIsCollectionsLoaded(state)
+  isLoading: state => !selectIsCollectionsLoaded(state)
 });
 
 const CollectionPageContainer = compose(
