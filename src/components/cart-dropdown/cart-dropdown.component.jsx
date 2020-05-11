@@ -11,8 +11,7 @@ import { toggleCartHidden } from '../../redux/cart/cart.actions';
 import {
     CartDropdownContainer,
     CartItemsContainer,
-    EmptyMessageContainer,
-    CartDropdownButton
+    EmptyMessageContainer
 } from './cart-dropdown.styles';
 
 
