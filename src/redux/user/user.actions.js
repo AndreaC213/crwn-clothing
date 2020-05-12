@@ -24,8 +24,9 @@ export const googleSignInFailure = error => ({
 });
 
 // email have to take the password value user passed in
-export const emailSignInStart = () => ({
-    type: UserActionTypes.EMAIL_SIGN_IN_START
+export const emailSignInStart = emailAndPassword => ({
+    type: UserActionTypes.EMAIL_SIGN_IN_START,
+    payload: emailAndPassword
 });
 
 export const emailSignInSuccess = emailAndPassword => ({
