@@ -11,5 +11,8 @@ export function* fetchCollectionsAsync() {
 // another generator() will response to current 
 // takeEvery Listener to trigger more code to run
 export function* fetchCollectionsStart() {
-  yield takeEvery(ShopActionTypes.FETCH_COLLECTIONS_START, )
+  yield takeEvery(
+    ShopActionTypes.FETCH_COLLECTIONS_START,
+    fetchCollectionsAsync
+ );
 }
