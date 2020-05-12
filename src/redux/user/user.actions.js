@@ -2,24 +2,20 @@ import UserActionTypes from './user.types';
 
 // fire off the actions hold that snapShot object,
 // we used to store in our state at 'firebase.utils'
-// this action function '{ setCurrentUser }' return objects
+// this action function '{ signInSuccess }' return objects
 // each object in the format that action expected it to be
-export const setCurrentUser = user => ({
-    type: UserActionTypes.SET_CURRENT_USER,
-    payload: user
-});
 
 export const googleSignInStart = () => ({
     type: UserActionTypes.GOOGLE_SIGN_IN_START
 });
 
 export const signInSuccess = user => ({
-    type: UserActionTypes.GOOGLE_SIGN_IN_SUCCESS,
+    type: UserActionTypes.SIGN_IN_SUCCESS,
     payload: user
 });
 
 export const signInFailure = error => ({
-    type: UserActionTypes.GOOGLE_SIGN_IN_FAILURE,
+    type: UserActionTypes.SIGN_IN_FAILURE,
     payload: error
 });
 
