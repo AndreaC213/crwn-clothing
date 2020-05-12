@@ -1,4 +1,4 @@
-export const UserActionTypes = {
+const UserActionTypes = {
     SET_CURRENT_USER: 'SET_CURRENT_USER',
     GOOGLE_SIGN_IN_START: 'GOOGLE_SIGN_IN_START',
     GOOGLE_SIGN_IN_SUCCESS: 'GOOGLE_SIGN_IN_SUCCESS',
@@ -36,3 +36,5 @@ export const emailSignInFailure = error => ({
     type: UserActionTypes.EMAIL_SIGN_IN_FAILURE,
     payload: error
 });
+
+export default UserActionTypes;
