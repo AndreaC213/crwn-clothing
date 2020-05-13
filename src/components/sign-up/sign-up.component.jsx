@@ -1,9 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import FormInput from '../form-input/form-input.component';
 import CustomButton from '../custom-button/custom-button.component';
 
-import { auth, createUserProfileDocument } from '../../firebase/firebase.utils';
+import { signUpStart } from '../../redux/user/user.actions';
 
 import { SignUpContainer, SignUpTitle } from './sign-up.styles';
 
@@ -15,40 +16,21 @@ class SignUp extends React.Component {
             displayName: '',
             email: '',
             password: '',
-            comfirmPassword: ''
+            confirmPassword: ''
         }
     }
 
     handleSubmit = async event => {
         event.preventDefault();
 
-        const { displayName, email, password, comfirmPassword } = this.state;
+        const { signUpStart } = this.props;
+        const { displayName, email, password, confirmPassword } = this.state;
 
-        if (password !== comfirmPassword) {
+        if (password !== confirmPassword) {
             alert("passwords don't match");
             return;
         }
-
-        // Using auth library to 'createUserWithEmailAndPassword'
-        try {
-            const { user } = await auth.createUserWithEmailAndPassword(
-                email, 
-                password
-            );
-
-            await createUserProfileDocument(user, { displayName });
-            
-            // clear the form  
-            this.setState({
-                displayName: '',
-                email: '',
-                password: '',
-                comfirmPassword: ''
-            })
-        }
-        catch(error) {
-            console.error(error);
-        }
+        signUpStart({ displayName, email, password });
     };
 
     handleChange = event => {
@@ -59,10 +41,10 @@ class SignUp extends React.Component {
     }
 
     render() {
-        const { displayName, email, password, comfirmPassword } = this.state;
+        const { displayName, email, password, confirmPassword } = this.state;
         return(
             <SignUpContainer>
-                <SignUpTitle>I do not have an account</SignUpTitle>
+                <SignUpTitle>I do not have a account</SignUpTitle>
                 <span>Sign up with your email and password</span>
                 <form className='sign-up-form' onSubmit={this.handleSubmit}>
                     <FormInput
@@ -91,10 +73,10 @@ class SignUp extends React.Component {
                     />
                     <FormInput
                     type='password'
-                    name='comfirmPassword'
-                    value={comfirmPassword}
+                    name='confirmPassword'
+                    value={confirmPassword}
                     onChange={this.handleChange}
-                    label='Comfirm Password'
+                    label='Confirm Password'
                     required
                     />
                     <CustomButton type='submit'>SIGN UP</CustomButton>
@@ -104,4 +86,11 @@ class SignUp extends React.Component {
     }
 }
 
-export default SignUp;
+const mapDispatchToProps = dispatch => ({
+    signUpStart: userCredentials => dispatch(signUpStart(userCredentials))
+});
+
+export default connect(
+    null, 
+    mapDispatchToProps
+)(SignUp);

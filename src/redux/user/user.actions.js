@@ -37,7 +37,25 @@ export const signOutSuccess = () => ({
     type: UserActionTypes.SIGN_OUT_SUCCESS
 });
 
-export const signOutFailure = (error) => ({
+export const signOutFailure = error => ({
     type: UserActionTypes.SIGN_OUT_FAILURE,
     payload: error
 });
+
+// email have to take the password value user passed in
+export const signUpStart = userCredentials => ({
+    type: UserActionTypes.SIGN_UP_START,
+    payload: userCredentials
+});
+
+export const signUpSuccess = ({ user, additionalData }) => ({
+    type: UserActionTypes.SIGN_UP_SUCCESS,
+    payload: { user, additionalData }
+});
+
+export const signUpFailure = error => ({
+    type: UserActionTypes.SIGN_UP_FAILURE,
+    payload: error
+});
+
+
