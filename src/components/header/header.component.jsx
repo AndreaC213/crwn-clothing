@@ -8,6 +8,7 @@ import CartIcon from '../cart-icon/cart-icon.component';
 import CartDropdown from '../cart-dropdown/cart-dropdown.component';
 import { selectCartHidden } from '../../redux/cart/cart.selectors';
 import { selectCurrentUser } from '../../redux/user/user.selectors';
+import { signOutStart } from '../../redux/user/user.actions';
 
 import { ReactComponent as Logo } from '../../assets/crown.svg';
 
@@ -15,7 +16,7 @@ import { HeaderContainer, LogoContainer, OptionContainer, OptionLink } from './h
 
 // destructure the current state into the header
 // see it's signin or sign out
-const Header = ({ currentUser, hidden }) => (
+const Header = ({ currentUser, hidden, signOutStart }) => (
     <HeaderContainer>
         <LogoContainer to="/">
             <Logo className='logo' />
@@ -29,7 +30,7 @@ const Header = ({ currentUser, hidden }) => (
             </OptionLink>
             {
               currentUser ?
-              (<OptionLink as='div' onClick={() => auth.signOut()}>
+              (<OptionLink as='div' onClick={signOutStart}>
                 SIGN OUT
               </OptionLink>
               ) : (
@@ -55,5 +56,12 @@ const mapStateToProps = createStructuredSelector({
   hidden : selectCartHidden
 });
 
+const mapDispatchToProps = dispatch => ({
+  signOutStart: () => dispatch(signOutStart())
+});
+
 // get the current state for header
-export default connect(mapStateToProps)(Header);
+export default connect(
+  mapStateToProps, 
+  mapDispatchToProps
+)(Header);
