@@ -13,37 +13,18 @@ import { GlobalStyle } from './global.styles';
 
 
 import { selectCurrentUser } from './redux/user/user.selectors';
+import { checkUserSession } from './redux/user/user.actions';
 
 // how do we confirm the access by google sign in
 // function -> class to acess state
 class App extends React.Component {
   unsubscribeFromAuth = null
 
-  // Get persistence of our user section
-  // get promise from auth by using 'createUserProfileDocument' from firebase
+  // Refector the persistence of our user section
+  // destructur 'checkUserSession' from dispatch 
   componentDidMount() {
-
-    // this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
-    //   if (userAuth) {
-
-    //     // if user not in firestore create one then return userRef
-    //     const userRef = await createUserProfileDocument(userAuth);
-
-    //     // subscribe to this userRef
-    //     // then set state for current user by using onSnapshop and .data() and
-    //     // 'action.js'
-    //     userRef.onSnapshot(snapShot => {
-    //       setCurrentUser({
-    //           id: snapShot.id,
-    //           ...snapShot.data()
-    //       });
-    //     });
-    //   }
-    //   // log out 
-    //   else {
-    //     setCurrentUser(userAuth);
-    //   };
-    // });
+    const { checkUserSession } = this.props;
+    checkUserSession();
   }
 
   // want to sign out -> get this subscribe unmount
@@ -82,7 +63,13 @@ class App extends React.Component {
 // getting current user form redux state
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser
-})
+});
+
+const mapDispatchToProps = dispatch => ({
+  checkUserSession: () => dispatch(checkUserSession())
+});
 
 export default connect(
-  mapStateToProps)(App);
+  mapStateToProps,
+  mapDispatchToProps
+  )(App);
