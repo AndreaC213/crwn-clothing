@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 
 import CollectionItem from '../../components/collection-item/collection-item.component';
@@ -10,20 +10,9 @@ import {
   CollectionTitle,
   CollectionItemsContainer
 } from './collection.styles';
-import { firestore } from 'firebase';
 
 // then pass match params to selectors 
 const CollectionPage = ({ collection }) => {
-  useEffect(() => {
-    const unsubscribeFromCollections = firestore
-      .collection('collections')
-      .onSnapshot(snapshot => console.log(snapshot));
-
-    return () => {
-      unsubscribeFromCollections();
-    };
-  }, []);
-
   const { title, items } = collection;
   return (
   <CollectionPageContainer>

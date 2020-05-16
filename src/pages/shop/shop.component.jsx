@@ -2,10 +2,11 @@ import React, { useEffect }from 'react';
 import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { fetchCollectionsStart, fetchCollectionsSuccess } from '../../redux/shop/shop.actions';
+import { fetchCollectionsStart } from '../../redux/shop/shop.actions';
 
 import CollectionsOverviewContainer from '../../components/collections-overview/collections-overview.container';
 import CollectionPageContainer from '../collection/collection.component';
+import CheckoutPage from '../../pages/checkout/checkout.component'
 
 // update shopPage as non-connect component
 // will create child component of the shopPage be connected
@@ -15,7 +16,7 @@ import CollectionPageContainer from '../collection/collection.component';
 const ShopPage = ({ fetchCollectionsStart, match }) => {
     useEffect(() => {
         fetchCollectionsStart();
-    },[fetchCollectionsStart]);
+    }, [fetchCollectionsStart]);
 
     return(
         <div className='shop-page'>
