@@ -10,7 +10,6 @@ import {
   CollectionTitle,
   CollectionItemsContainer
 } from './collection.styles';
-import { firestore } from 'firebase';
 
 // then pass match params to selectors 
 const CollectionPage = ({ collection }) => {

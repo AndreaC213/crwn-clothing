@@ -2,13 +2,13 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
-import { selectIsCollectionsFetching } from '../../redux/shop/shop.selectors';
+import { selectIsCollectionFetching } from '../../redux/shop/shop.selectors';
 import WithSpinner from '../with-spinner/with-spinner.component';
 import CollectionsOverview from './collections-overview.component';
 
 // the name of props have to match the name inside of 'withSpinner'
 const mapStateToProps = createStructuredSelector({
-  isLoading: selectIsCollectionsFetching
+  isLoading: selectIsCollectionFetching
 });
 
 // connect the 'mapStateToProps' and 'WithSpinner'
