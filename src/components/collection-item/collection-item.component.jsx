@@ -1,55 +1,46 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { addItem } from '../../redux/cart/cart.actions';
-
 import {
-  CollectionItemContainer,
-  CollectionFooterContainer,
-  AddButton,
-  BackgroundImage,
-  NameContainer,
-  PriceContainer
-} from './collection-item.styles';
+  clearItemFromCart,
+  addItem,
+  removeItem
+} from '../../redux/cart/cart.actions';
 
-// destruct the collection preview to current props objects as 'item'
-// addItem
-// step 7. now current collection can access the 'item' objects
-const CollectionItem = ({ item, addItem }) => {
-  const { name, price, imageUrl } = item;
+import './checkout-item.styles.scss';
+
+const CheckoutItem = ({ cartItem, clearItem, addItem, removeItem }) => {
+  const { name, imageUrl, price, quantity } = cartItem;
   return (
-    <CollectionItemContainer>
-        <BackgroundImage className='image' imageUrl={imageUrl} />
-        <CollectionFooterContainer>
-          <NameContainer>{name}</NameContainer>
-          <PriceContainer>{price}</PriceContainer>
-        </CollectionFooterContainer>
-        <AddButton onClick={() => addItem(item)} inverted>
-          Add to cart
-        </AddButton>
-    </CollectionItemContainer>
+    <div className='checkout-item'>
+      <div className='image-container'>
+        <img src={imageUrl} alt='item' />
+      </div>
+      <span className='name'>{name}</span>
+      <span className='quantity'>
+        <div className='arrow' onClick={() => removeItem(cartItem)}>
+          &#10094;
+        </div>
+        <span className='value'>{quantity}</span>
+        <div className='arrow' onClick={() => addItem(cartItem)}>
+          &#10095;
+        </div>
+      </span>
+      <span className='price'>{price}</span>
+      <div className='remove-button' onClick={() => clearItem(cartItem)}>
+        &#10005;
+      </div>
+    </div>
   );
 };
 
-// addItem
-// step 6. update collection item to pulls in to its props
-// define the onClick '{ addItem }'  as '{ item }'  
-// that return the payload and the type
-// which dispatch actul action 'addItem'
-// objects are written with curly braces {}
-// many properties using {} to hold the value
-//  var object = {properties: ""}
-// dispatch the addItem actions to 'item' for reducer usage
-// meaning addItem (prop at web page) as a prop function
-// received the item as pass in value to current 'addItem' properity
-// 'action' gives us back that object with 'type' and 'payload'
-// function within the properity
 const mapDispatchToProps = dispatch => ({
-  addItem: item => dispatch(addItem(item))
+  clearItem: item => dispatch(clearItemFromCart(item)),
+  addItem: item => dispatch(addItem(item)),
+  removeItem: item => dispatch(removeItem(item))
 });
 
-// then passing the 'item' into CollectionItem (reducer) 
 export default connect(
   null,
   mapDispatchToProps
-)(CollectionItem);
+)(CheckoutItem);
