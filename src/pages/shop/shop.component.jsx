@@ -1,15 +1,15 @@
+  
 import React from 'react';
+import { Route } from 'react-router-dom';
 
-import SignIn from '../../components/sign-in/sign-in.component';
-import SignUp from '../../components/sign-up/sign-up.component';
+import CollectionsOverview from '../../components/collections-overview/collections-overview.component';
+import CollectionPage from '../collection/collection.component';
 
-import './sign-in-and-sign-up.styles.scss';
-
-const SignInAndSignUpPage = () => (
-  <div className='sign-in-and-sign-up'>
-    <SignIn />
-    <SignUp />
+const ShopPage = ({ match }) => (
+  <div className='shop-page'>
+    <Route exact path={`${match.path}`} component={CollectionsOverview} />
+    <Route path={`${match.path}/:collectionId`} component={CollectionPage} />
   </div>
 );
 
-export default SignInAndSignUpPage;
+export default ShopPage;

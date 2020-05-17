@@ -1,23 +1,20 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
 
-import { selectDirectorySections } from '../../redux/directory/directory.selectors';
+import './form-input.styles.scss';
 
-import MenuItem from '../menu-item/menu-item.component';
-
-import './directory.styles.scss';
-
-const Directory = ({ sections }) => (
-  <div className='directory-menu'>
-    {sections.map(({ id, ...otherSectionProps }) => (
-      <MenuItem key={id} {...otherSectionProps} />
-    ))}
+const FormInput = ({ handleChange, label, ...otherProps }) => (
+  <div className='group'>
+    <input className='form-input' onChange={handleChange} {...otherProps} />
+    {label ? (
+      <label
+        className={`${
+          otherProps.value.length ? 'shrink' : ''
+        } form-input-label`}
+      >
+        {label}
+      </label>
+    ) : null}
   </div>
 );
 
-const mapStateToProps = createStructuredSelector({
-  sections: selectDirectorySections
-});
-
-export default connect(mapStateToProps)(Directory);
+export default FormInput;
