@@ -9,6 +9,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ApolloClient, gql } from 'apollo-boost';
 
 import { store, persistor } from './redux/store';
+import { resolvers, typeDefs } from './graphql/resolver';
 
 import './index.css';
 import App from './App';
@@ -21,7 +22,15 @@ const cache = new InMemoryCache();
 
 const client = new ApolloClient({
   link: httpLink,
+  typeDefs,
+  resolvers,
   cache
+});
+
+client.writeData({
+  data: {
+    cartHidden: true
+  }
 });
 
 client.query({
